@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from myblog.rss import LatestEntriesFeed
 
 from myblog.views import stub_view
 from myblog.views import list_view
@@ -21,4 +22,6 @@ urlpatterns = [
     url(r'posts/(?P<pk>[0-9]+)/delete/$',
         PostDelete.as_view(),
         name='delete_post'),
+    url(r'^latest/feed/$',
+        LatestEntriesFeed()),
 ]
