@@ -1,8 +1,26 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template import RequestContext, loader
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.core.urlresolvers import reverse_lazy
 
 from myblog.models import Post
+
+
+class PostCreate(CreateView):
+    model = Post
+    fields = ['title', 'text', 'author', 'published_date']
+
+
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['title', 'text', 'author', 'published_date']
+
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('post-list')
 
 
 def stub_view(request, *args, **kwargs):
